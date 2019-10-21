@@ -251,3 +251,94 @@ body {
   width: 1em;
   border-color: transparent transparent #fff #fff !important;
 }
+
+
+.story-list {
+  padding: 40px 0px 40px 12%;
+  margin-left: 200px;
+}
+
+.story-list-title {
+  color: #525252;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 39px;
+  font-weight: normal;
+}
+
+.story-list-item .item-holder {
+  background: #d1d8ff;
+  height: 200px;
+}
+
+.story-list-item {
+  background-color: #000000;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  color: #3f3f3f;
+  font-size: 16px;
+  line-height: 1.6em;
+  margin: 10px 1%;
+  max-width: 600px;
+  min-width: 550px;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.story-list-item * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.story-list-item .item-caption {
+  font-size: 20px;
+  padding: 10px 20px 25px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+}
+
+.story-list-item .item-date {
+  background-color: #d1d8ff;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 800;
+  min-height: 48px;
+  min-width: 48px;
+  padding: 10px 0;
+  position: absolute;
+  left: 15px;
+  text-align: center;
+  top: 0;
+}
+
+.item-date .date-span {
+  display: block;
+  line-height: 14px;
+}
+.item-caption .caption-text {
+  margin: 0;
+  padding: 0;
+}
+
+.item-caption .caption-title {
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+
+.story-list-item .item-link {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.story-list-load-btn {
+  text-align: center;
+  margin-bottom: 50px;
+}
