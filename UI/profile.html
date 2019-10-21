@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="MyDiary is an online journal where users can record their thoughts and feelings">
+  <link rel="icon" type="image/png" href="./img/logo.jpg" sizes="32x32" />
+  <meta name="author" content="Niyonzi Rauf">
+  <title>My Profile | MyDiary</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="page page--is-flex page--stretches">
+    <header class="header">
+      <div class="container">
+        <div class="header-brand">
+          <a class="link" href="./entries.html">
+            <img class="img-logo" src="./img/logo.jpg" alt="logo" width="25px" height="25px">
+            MyDiary
+          </a>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-open-menu js-open-menu"></a>
+          <ul class="list nav-list js-nav-list">
+            <li class="list-item">
+              <a href="#" class="nav-close-menu js-close-menu"></a>
+            </li>
+            <li class="list-item">
+              <a href="./new-entry.html" class="link nav-link">
+                New Story
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="./entries.html" class="link nav-link">
+                Stories
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="./entries.html?filter=favs" class="link nav-link">
+                Favorites
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="./index.html" class="link nav-link">
+                Logout
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div class="profile full">
+        <div class="header_text">Your Profile</div>
+        <div class="profile-header">
+    
+        </div>
+
+        <div class="profile-data">
+          <ul class="list">
+            <li class="data-item">
+              <span class="span">Username: </span>
+              JohnDoe01
+            </li>
+            <li class="data-item">
+              <span class="span">Full name: </span>
+              John Doe
+            </li>
+            <li class="data-item">
+              <span class="span">Entries: </span>
+              0
+            </li>
+          </ul>
+        </div>
+        <div class="reminder-block">
+          <p>Reminder</p>
+          <label class="switch"><input type="checkbox" class="switch-input" />
+            <div class="switch-div"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="./js/script.js"></script>
+</body>
+
+</html>
