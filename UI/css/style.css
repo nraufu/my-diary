@@ -140,3 +140,114 @@ body {
   margin-top: 10px;
   background-color: #52de97;
 }
+
+
+.log-title {
+  color: #52de97;
+  margin: 5px;;
+  text-align: center;
+  font-size: 39px;
+  font-weight: normal;
+}
+.img-logo {
+  border-radius: 50px;
+}
+
+.form-group {
+  width: 40%;
+  border-radius:8px;
+  min-width: 320px;
+  max-width: 475px;
+  background: #d1d8ff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.form-group-form {
+  display: block;
+  width: 100%;
+  padding: 2em 1.2em;
+  text-align: center;
+}
+
+
+.form-input,
+.form-textarea {
+  display: block;
+  font-size: 1.20em;
+  margin: auto auto;
+  margin-bottom: 2em;
+  padding: 0.5em 0;
+  border: none;
+  border-bottom: 2px dashed #eaeaea;
+  border-radius: 10px;
+  background-color: #d1d8ff;
+  padding-bottom: 1.25em;
+  color: #757575;
+  width: 75%;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form-btn--submit {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 1.15em;
+  background: #3c9d9b;
+  border: none;
+  padding: 0.5em 2em;
+  color: white;
+  margin-right: 0.5em;
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.form-btn--submit:hover {
+  background: #52de97;
+}
+
+.form-btn--submit:active {
+  background: #1fb5bf;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.form-btn--submit:focus {
+  outline: none;
+}
+
+.alternate {
+  font-size: 1.15em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.form-btn--alternate {
+  color: #3c9d9b;
+  font-size: 1.15em;
+  line-height: 0.5em;
+  position: relative;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+.button--loading::after {
+  border: 2px solid #dbdbdb;
+  border-radius: 290486px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+  border-color: transparent transparent #fff #fff !important;
+}
