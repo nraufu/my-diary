@@ -342,3 +342,121 @@ body {
   text-align: center;
   margin-bottom: 50px;
 }
+
+
+.story {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 0;
+  margin-top: 50px;
+  background: #d1d8ff;
+  color: #757575;
+  width: 75%;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.story-date {
+  font-size: 25px;
+  margin-left: 5px;
+  padding-left: 50px;
+}
+
+.story-title {
+  font-weight: bold;
+  font-size: 35px;
+  margin-top: 5px;
+  padding-left: 50px;
+}
+
+.story-content {
+  font-size: 25px;
+  line-height: 1.8em;
+  padding: 0 50px;
+}
+
+.story-toolbar {
+  position: relative;
+  height: 60px;
+  padding: 0 50px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.story-toolbar .toolbar-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.story-toolbar .toolbar-edit-btn {
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+
+.story-toolbar .toolbar-delete-btn {
+  background-color: transparent;
+  color: #3bbfaf !important;
+}
+
+.story-fav-icon {
+  margin-left: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.modal-cancel-btn {
+  background-color: firebrick;
+  color: #fff;
+}
+
+.icon {
+  width: 25px;
+  color: #444;
+  transition: 0.2s ease-in;
+}
+
+.icon--heart-active {
+  animation: scale_in 0.3s linear 1;
+  color: red;
+}
+
+@keyframes scale_in {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  overflow: auto;
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  z-index: 1;
+}
+
+.modal-body {
+  width: 38%;
+  text-align: center;
+  margin: 200px auto;
+  background-color: #fff;
+  height: 200px;
+  padding: 0 15px;
+  box-shadow: 2px -1px 3px 2px rgba(255, 255, 255, 0.5);
+}
+
+.modal-text {
+  padding-top: 80px;
+}

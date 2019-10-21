@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="MyDiary is an online journal where users can record their thoughts and feelings">
+  <link rel="icon" type="image/png" href="./img/logo.jpg" sizes="32x32" />
+  <meta name="author" content="Niyonzi Rauf">
+  <title>Story | MyDiary</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="page page--is-flex page--stretches">
+    <div class="modal js-modal">
+      <div class="modal-body">
+        <p class="modal-text">Are you sure you want to delete?</p>
+        <a href="./entries.html" class="button button--success js-confirm-modal">Confirm</a>
+        <a type="button" class="button modal-cancel-btn js-cancel-modal">Cancel</a>
+      </div>
+    </div>
+    <header class="header">
+      <div class="container">
+        <div class="header-brand">
+          <a class="link" href="./entries.html">
+            <img class="img-logo" src="./img/logo.jpg" alt="logo" width="25px" height="25px">
+            MyDiary
+          </a>
+        </div>
+        <nav class="nav">
+          <a href="#" class="nav-open-menu js-open-menu"></a>
+          <ul class="list nav-list js-nav-list">
+            <li class="list-item">
+              <a href="#" class="nav-close-menu js-close-menu"></a>
+            </li>
+            <li class="list-item">
+              <a href="./new-entry.html" class="link nav-link">
+                New Story
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="./entries.html" class="link nav-link">
+                Stories
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="./profile.html" class="link nav-link">
+                Profile
+              </a>
+            </li>
+            <li class="list-item">
+              <a href="./index.html" class="link nav-link">
+                Logout
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="wrapper">
+
+
+      <div class="story">
+        <p class="story-date">October 01, 2019</p>
+        <p class="story-title js-story-title" contenteditable="true">It was a great day</p>
+        <div class="story-content js-story-content" contenteditable="true">Lorem ipsum dolor sit amet, consectetur
+          adipisicing elit. Vero commodi corporis repellat deserunt culpa ipsam ipsa fugiat, assumenda quaerat totam eum
+          sequi voluptatibus asperiores laudantium iure modi dolores. Voluptatibus, voluptatem. Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit. Molestias voluptatibus quod provident, quasi sunt a ex saepe doloribus
+          magni ea, neque cum, voluptates excepturi voluptatem sapiente rem maxime, sequi alias!
+        </div>
+        <div class="story-toolbar">
+          <div class="story-fav-icon">
+            <svg aria-hidden="true" data-prefix="fas" data-icon="heart" class="icon js-icon-heart" role="img"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="currentColor"
+                d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z">
+              </path>
+            </svg>
+          </div>
+          <div class="toolbar-buttons">
+            <a type="button" class="button button--success toolbar-edit-btn js-edit-story">Edit</a>
+            <a type="button" class="button toolbar-delete-btn js-delete-story">Delete</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="./js/script.js"></script>
+</body>
+
+</html>
