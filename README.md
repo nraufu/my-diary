@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nraufu/my-diary.svg?branch=develop)](https://travis-ci.org/nraufu/my-diary)
+
 # MyDiary
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
