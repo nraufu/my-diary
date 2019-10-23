@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel server -d dist",
     "start": "npm run build && node /server/index.js",
-    "test": "mocha --require @babel/register ./server/test/*.spec.js"
+    "test": "mocha --require @babel/register ./server/test/*.spec.js --timeout 10000 --exit"
   },
   "repository": {
     "type": "git",
