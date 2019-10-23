@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/nraufu/my-diary.svg?branch=develop)](https://travis-ci.org/nraufu/my-diary)
+[![Coverage Status](https://coveralls.io/repos/github/nraufu/my-diary/badge.svg?branch=develop)](https://coveralls.io/github/nraufu/my-diary?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/602f0efa0ea32d017ac8/maintainability)](https://codeclimate.com/github/nraufu/my-diary/maintainability)
 
 # MyDiary
 MyDiary is an online journal where users can pen down their thoughts and feelings.
