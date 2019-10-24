@@ -45,6 +45,7 @@
     "babel-register": "^6.26.0",
     "coveralls": "^3.0.7",
     "eslint": "^6.5.1",
+    "express-validator": "^6.2.0",
     "nodemon": "^1.19.4"
   }
 }
