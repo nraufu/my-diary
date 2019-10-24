@@ -45,5 +45,9 @@ router.put(
         .optional(),
     ],
     entry.modifyEntry,
-);
+    );
+
+    router.delete('/entries/:id', entry.deleteEntry)
+
+    
 module.exports = router;
