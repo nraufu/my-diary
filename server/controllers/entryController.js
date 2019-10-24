@@ -1,4 +1,4 @@
-import entries from '../db/entries';
+import entries from '../models/entries';
 
 const getAllEntries = (req, res) => {
   res.status(200).json(entries);

@@ -1,5 +1,5 @@
 import express from 'express';
-import getAllEntries from '../controllers/getAllEntries';
+import getAllEntries from '../controllers/entryController';
 
 const router =express.Router();
 
