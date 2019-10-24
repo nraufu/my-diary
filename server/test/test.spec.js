@@ -20,7 +20,7 @@ describe('Example Node Server', () => {
 });
 
 describe('/GET entries', () => {
-  it('it should GET all entries', (done) => {
+  it('it should return all user entries', (done) => {
     chai
       .request(app)
       .get('/api/v1/entries')
@@ -31,4 +31,34 @@ describe('/GET entries', () => {
           done();
       })
   })
-})
+});
+
+
+describe('/GET/:id entries', () => {
+  it('should return a single entry by id', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/1')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.id).to.be.eql(1);
+        expect(res.body).to.have.property('timestamp');
+        expect(res.body).to.have.property('title');
+        expect(res.body).to.have.property('content');
+        done();
+      });
+  });
+
+  it('should not return an entry', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/entries/0')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('error');
+        done();
+      });
+  });
+});
