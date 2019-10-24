@@ -15,6 +15,6 @@ router.get('/', (req,res) => {
 router.get('/entries', entry.getAllEntries);
 
 /* GET a single entry */
-router.get('/:id', entry.getEntry);
+router.get('/entries/:id', entry.getEntry);
 
 module.exports = router;
