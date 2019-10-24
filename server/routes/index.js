@@ -1,5 +1,5 @@
 import express from 'express';
-import getAllEntries from '../controllers/entryController';
+import entry from '../controllers/entryController';
 
 const router =express.Router();
 
@@ -12,6 +12,9 @@ router.get('/', (req,res) => {
 });
 
 /* GET all user entries */
-router.get('/entries', getAllEntries);
+router.get('/entries', entry.getAllEntries);
+
+/* GET a single entry */
+router.get('/entries/:id', entry.getEntry);
 
 module.exports = router;
