@@ -5,13 +5,6 @@ import entry from '../controllers/entryController';
 const router = express.Router();
 
 
-/* GET API base */
-router.get('/', (req, res) => {
-    res.send({
-        myDiary: 'API v1'
-    })
-});
-
 /* GET all user entries */
 router.get('/entries', entry.getAllEntries);
 
