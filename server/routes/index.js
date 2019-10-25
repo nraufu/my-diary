@@ -7,7 +7,7 @@ const router = express.Router();
 
 /* GET API base */
 router.get('/', (req, res) => {
-    res.json({
+    res.send({
         myDiary: 'API v1'
     })
 });
