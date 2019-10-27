@@ -43,7 +43,6 @@ const entry = {
         }else if(indexOfFound === -1) {
             return res.status(404).json({errors: [{msg: 'Entry does not exist'}]})
         }
-
         return res.status(400).json({errors: error.array() });
 
     },
