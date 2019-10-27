@@ -70,45 +70,7 @@ class UserController {
         };
     }
 
-    static loginUser(req, res, next) {
-        try {
-            // get email and password in request body
-            const {
-                email,
-                password
-            } = req.body;
-
-            // fetch user
-            const user = users.find((userx) => userx.email === email);
-
-            const passwordIsValid = bcrypt.compare(password, user.passwordHash);
-
-            // if error in fetch, user does not exist - 422 || check password
-
-            if (!user || !passwordIsValid) {
-                res.status(422).json({
-                    error: {
-                        message: 'Email or Password is incorrect'
-                    }
-                });
-            }
-
-            // create token
-            const data = {
-                userId: user.userId,
-                email: user.email
-            };
-
-            const token = authToken(data);
-
-            res.status(200).json({
-                token
-            });
-
-        } catch (error) {
-            next(error);
-        }
-    }
+   
 }
 
 
