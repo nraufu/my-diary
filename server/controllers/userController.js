@@ -2,17 +2,19 @@ import '@babel/polyfill';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import authToken from '../middlewares/authToken';
-import user from '../models/userModel';
+import User from '../models/userModel';
 
 dotenv.config();
 
-export const users = [/* {
-    userId: 1,
-    firstName: 'pappy',
-    lastName: 'carter',
-    email: 'nraufu@gmail.com',
-    password: "12453"
-} */];
+export const users = [
+    /* {
+        userId: 1,
+        firstName: 'pappy',
+        lastName: 'carter',
+        email: 'nraufu@gmail.com',
+        password: "12453"
+    } */
+];
 
 class UserController {
     static users = [];
@@ -45,7 +47,7 @@ class UserController {
 
             // create newUser
 
-            const newUser = new user(userId, firstName, lastName, email, passwordHash);
+            const newUser = new User(userId, firstName, lastName, email, passwordHash);
 
             //creating a new token 
             const data = {
@@ -58,9 +60,9 @@ class UserController {
             // signed token - 201
             res.status(201).json({
                 token,
-                userId: user.userId,
-                email: user.email,
-                password: user.passwordHash
+                userId: newUser.userId,
+                email: newUser.email,
+                password: newUser.passwordHash
             });
 
         } catch (error) {
@@ -96,7 +98,9 @@ class UserController {
                 userId: user.userId,
                 email: user.email
             };
+
             const token = authToken(data);
+
             res.status(200).json({
                 token
             });
