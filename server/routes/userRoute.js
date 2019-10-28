@@ -9,6 +9,7 @@ const router = express.Router();
 /* Create a new user */
 router.post('/signup', validate.signUp, errorHandler, UserController.createUser);
 
-
+/* Login user */
+router.post('/login', validate.signIn, errorHandler, UserController.loginUser);
 
 module.exports = router;

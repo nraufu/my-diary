@@ -1,6 +1,7 @@
 import express from 'express';
 import entry from '../controllers/entryController';
 import validate from '../middlewares/validator';
+import verifyToken from '../middlewares/verifyToken';
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 /* GET all user entries */
-router.get('/entries',  entry.getAllEntries);
+router.get('/entries', entry.getAllEntries);
 
 /* GET a single entry */
 router.get('/entries/:id', entry.getEntry);
