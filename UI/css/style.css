@@ -250,6 +250,11 @@ body {
   padding: 0;
 }
 
+.form-btn--alternate:hover {
+  color: #52de97;
+  cursor: pointer;
+}
+
 .button--loading::after {
   border: 2px solid #dbdbdb;
   border-radius: 290486px;
