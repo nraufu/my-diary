@@ -158,7 +158,7 @@ body {
   border-radius:8px;
   min-width: 320px;
   max-width: 475px;
-  background: #d1d8ff;
+  background: #fbfcff;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -186,11 +186,11 @@ body {
   margin-bottom: 2em;
   padding: 0.5em 0;
   border: none;
-  border-bottom: 2px dashed #eaeaea;
-  border-radius: 10px;
-  background-color: #d1d8ff;
+  border-bottom: 2px solid #d1d8ff;
+  border-radius: 2px;
+  background-color: #fbfcff;
   padding-bottom: 1.25em;
-  color: #757575;
+  color: #5c5c5c;
   width: 75%;
 }
 
@@ -254,8 +254,11 @@ body {
 
 
 .story-list {
-  padding: 40px 0px 40px 12%;
-  margin-left: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 0px 40px 10px;
+  
 }
 
 .story-list-title {
@@ -470,7 +473,7 @@ body {
   margin: 3em auto 0 auto;
   border-radius: 8px;
   padding-bottom: 0;
-  background: #b3beff;
+  background: #d1d8ff;
   color: #757575;
 }
 
@@ -513,7 +516,7 @@ margin-bottom: 10px;
   font-size:20px;
   margin: 1.5em auto 0 auto;
   width: 100%;
-  background: #b3beff;
+  background: #d1d8ff;
   border-radius: 0px 0px 10px 10px;
   color: white;
   display: flex;
@@ -643,7 +646,7 @@ margin-bottom: 10px;
 
   .story-list {
     padding: 30px 0px 30px 5%;
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
   }
 
