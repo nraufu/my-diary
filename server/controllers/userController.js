@@ -7,13 +7,13 @@ import User from '../models/userModel';
 dotenv.config();
 
 export const users = [
-    /* {
+     {
         userId: 1,
         firstName: 'pappy',
         lastName: 'carter',
         email: 'nraufu@gmail.com',
         password: "12453"
-    } */
+    } 
 ];
 
 class UserController {
@@ -43,11 +43,11 @@ class UserController {
             }
 
             // hash the password
-            const passwordHash = bcrypt.hash(password, 5);
+            const passwordhash = bcrypt.hash(password, 5);
 
             // create newUser
 
-            const newUser = new User(userId, firstName, lastName, email, passwordHash);
+            const newUser = new User(userId, firstName, lastName, email, passwordhash);
 
             //creating a new token 
             const data = {
@@ -55,6 +55,7 @@ class UserController {
                 email: newUser.email
             };
             const token = authToken(data);
+
             users.push(newUser);
 
             // signed token - 201
@@ -68,6 +69,43 @@ class UserController {
         } catch (error) {
             next(error)
         };
+    }
+
+    static loginUser(req, res, next) {
+        try {
+            // get email and password in request body
+            const { email, password } = req.body;
+
+            // fetch user
+            const user = users.find((userx) => userx.email === email);
+
+            const passwordIsValid = bcrypt.compare(password, user.password);
+
+            // if error in fetch, user does not exist - 422 || check password
+
+            if (!user || !passwordIsValid) {
+                res.status(422).json({
+                    error: {
+                        message: 'Email or Password is incorrect'
+                    }
+                });
+            }
+
+            // create token
+            const data = {
+                userId: user.userId,
+                email: user.email
+            };
+
+            const token = authToken(data);
+
+            res.status(200).json({
+                token
+            });
+
+        } catch (error) {
+            next(error);
+        }
     }
 
    

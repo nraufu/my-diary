@@ -5,7 +5,8 @@ const validate = {
   entry(req, res, next) {
     const schema = {
       title: Joi.string().max(100).required(),
-      description: Joi.string().min(100).max(3000).required(),
+      content: Joi.string().min(100).max(3000).required(),
+      isFavorite: Joi.boolean().required(),
     };
     const {
       error
@@ -22,6 +23,17 @@ const validate = {
       password: Joi.string().regex(/^[a-zA-Z0-9]+$/).min(8).max(20)
         .required()
     };
+    const { error } = Joi.validate(req.body,schema);
+    if(error) return res.status(400).send(error.details[0].message);
+    next();
+  },
+
+  signIn(req, res, next) {
+    const schema = {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    };
+
     const { error } = Joi.validate(req.body,schema);
     if(error) return res.status(400).send(error.details[0].message);
     next();
