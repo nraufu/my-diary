@@ -300,9 +300,9 @@ body {
   color: #3f3f3f;
   font-size: 16px;
   line-height: 1.6em;
-  margin: 10px 1%;
+  margin: 10px 5px;
   max-width: 600px;
-  min-width: 550px;
+  min-width: 350px;
   overflow: hidden;
   position: relative;
   text-align: left;
@@ -665,18 +665,17 @@ body {
   }
 
   .story-list {
-    padding: 30px 0px 30px 5%;
-    width: 90%;
+    padding: 30px 0px 30px 10px;
+    width: 100%;
     margin: 0 auto;
   }
-
+  
   .story-list-title {
     margin-top: 50px;
   }
 
   .story {
     width: 90%;
-
   }
 
   .story-edit-btn,
