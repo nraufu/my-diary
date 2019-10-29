@@ -19,7 +19,7 @@ body {
 }
 
 .page-stretches {
-  min-height: 100vh;
+  height: 90vh;
 }
 
 .container {
@@ -180,10 +180,28 @@ body {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
 }
 
+.form-group-new {
+  width: 60%;
+  margin-top: 20px;
+  border-radius: 8px;
+  background: #fbfcff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+
+
 .form-group-form {
   display: block;
   width: 100%;
-  padding: 2em 1.2em;
+  padding: 10px 5px;
   text-align: center;
 }
 
@@ -202,6 +220,7 @@ body {
   padding-bottom: 1.25em;
   color: #5c5c5c;
   width: 75%;
+  resize: none;
 }
 
 .form-input:focus {
@@ -302,7 +321,7 @@ body {
   line-height: 1.6em;
   margin: 10px 5px;
   max-width: 600px;
-  min-width: 350px;
+  min-width: 250px;
   overflow: hidden;
   position: relative;
   text-align: left;
@@ -489,7 +508,7 @@ body {
 }
 
 .profile {
-  width: 380px;
+  min-width: 250px;
   margin: 3em auto 0 auto;
   border-radius: 8px;
   padding-bottom: 0;
@@ -580,6 +599,7 @@ body {
 
 
 @media only screen and (max-width: 768px) {
+  
   .header {
     position: relative;
   }
@@ -648,9 +668,6 @@ body {
     width: 80%;
   }
 
-  .footer {
-    min-height: 10vh;
-  }
 
   .form-group {
     width: 95%;
@@ -664,12 +681,17 @@ body {
     transform: translate(0%, 0%);
   }
 
-  .story-list {
-    padding: 30px 0px 30px 10px;
-    width: 90%;
-    margin: 0 auto;
+  .form-group-new {
+    width: 95%;
   }
 
+  .story-list {
+    width: 90%;
+  }
+
+  .story-list-item .item-date {
+    margin-bottom: 5px;
+  }
   .story-list-title {
     margin-top: 50px;
   }
@@ -692,7 +714,12 @@ body {
     width: 80%;
   }
 }
+html, body {min-height: 100%;}
+body {background-size: cover;}
 
-.full {
-  margin-bottom: 182px;
-}
+@media only screen and (min-width: 1366px) and (orientation: landscape) { 
+  html, body {min-height: 90vh;}
+  body {background-size: cover;}
+
+
+ }
