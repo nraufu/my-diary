@@ -8,9 +8,9 @@ const router = express.Router();
 
 /* GET API base */
 router.get('/', (req, res) => {
-    res.send({
-        myDiary: 'API v1'
-    })
+    res.status(200).json({
+        Message: 'Welcome To My Diary'
+    });
 });
 
 /* GET all user entries */
