@@ -14,7 +14,8 @@ app.use('/api/v1', entryRoute);
 app.use('/api/v1/auth', userRoute);
 app.use(express.static('./ui'));
 
-
+// index route
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '../index.html')));
 
 app.listen(PORT, () => console.log(`The server is listening to port ${PORT}....`));
 
