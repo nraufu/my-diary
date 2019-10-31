@@ -2,24 +2,15 @@ import '@babel/polyfill';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import authToken from '../middlewares/authToken';
-import User from '../models/userModel';
+import users from '../models/users';
+
 
 dotenv.config();
 
-export const users = [
-     {
-        userId: 1,
-        firstName: 'pappy',
-        lastName: 'carter',
-        email: 'nraufu@gmail.com',
-        password: "12453"
-    } 
-];
 
 class UserController {
-    static users = [];
 
-    static createUser(req, res, next) {
+    static async createUser(req, res, next) {
         try {
             //increase user id 
             const userId = users.length + 1;
@@ -33,37 +24,44 @@ class UserController {
             } = req.body;
 
             // check if user already exists - 409
-            const emailExists = users.find((user) => user.email === req.body.email);
+            const emailExists = await users.find((user) => user.email === req.body.email);
             if (emailExists) {
                 res.status(409).json({
-                    error: {
-                        message: 'User already exists. Please login.'
-                    }
+                    "status": "409",
+                    "error": "User Already Exists"
                 });
             }
 
             // hash the password
-            const passwordhash = bcrypt.hash(password, 5);
+            const passwordhash = await bcrypt.hash(password, 5);
 
             // create newUser
 
-            const newUser = new User(userId, firstName, lastName, email, passwordhash);
+            const newUser = {
+                userId: userId,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: passwordhash
+            };
+
+            users.push(newUser);
 
             //creating a new token 
             const data = {
                 userId,
-                email: newUser.email
+                email
             };
             const token = authToken(data);
 
-            users.push(newUser);
 
             // signed token - 201
             res.status(201).json({
-                token,
-                userId: newUser.userId,
-                email: newUser.email,
-                password: newUser.passwordHash
+                "status": "201",
+                "message": "User Created Successfully",
+                "data": {
+                    token,
+                }
             });
 
         } catch (error) {
@@ -71,36 +69,41 @@ class UserController {
         };
     }
 
-    static loginUser(req, res, next) {
+    static async loginUser(req, res, next) {
         try {
             // get email and password in request body
-            const { email, password } = req.body;
+            const {
+                email,
+                password
+            } = req.body;
 
+            const passwordIsValid = (pwd, userpwd) => bcrypt.compareSync(pwd, userpwd);
             // fetch user
-            const user = users.find((userx) => userx.email === email);
+            const user = await users.find((userx) => userx.email === email && passwordIsValid(password, userx.password));
 
-            const passwordIsValid = bcrypt.compare(password, user.password);
 
             // if error in fetch, user does not exist - 422 || check password
 
             if (!user || !passwordIsValid) {
                 res.status(422).json({
-                    error: {
-                        message: 'Email or Password is incorrect'
-                    }
+                    status: "422",
+                    message: "Username or Password is Incorrect"
                 });
             }
 
             // create token
             const data = {
-                userId: user.userId,
+                userID: user.userId,
                 email: user.email
             };
 
             const token = authToken(data);
 
             res.status(200).json({
-                token
+                "status": "201",
+                "data": {
+                    token
+                }
             });
 
         } catch (error) {
@@ -108,8 +111,8 @@ class UserController {
         }
     }
 
-   
+
 }
 
 
-module.exports = UserController;
+export default UserController;
