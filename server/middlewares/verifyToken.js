@@ -8,7 +8,7 @@ const verifyToken = (req, res, next) => {
     if (!req.headers.authorization) {
       res
         .status(401)
-        .json({ error: { message: 'Authorization failed. Please provide a token' } });
+        .json({ status:401, error:'Authorization failed. Please provide a token'});
       return;
     }
     const token = req.headers.authorization.split(' ')[1];
@@ -18,8 +18,8 @@ const verifyToken = (req, res, next) => {
   } catch (error) {
     res
       .status(401)
-      .json({ error: { message: 'Authorization failed. Your token is invalid or expired' } });
+      .json({ status: 401, error: 'Authorization failed. Your token is invalid or expired'});
   }
 };
 
-module.exports = verifyToken;
+export default verifyToken;

@@ -14,11 +14,8 @@ app.use('/api/v1', entryRoute);
 app.use('/api/v1/auth', userRoute);
 app.use(express.static('./ui'));
 
-  //Homepage
-  app.get('/', (req,res) => {
-    res.status(200).send(__filename, 'index.html');
-   });
+
 
 app.listen(PORT, () => console.log(`The server is listening to port ${PORT}....`));
 
-module.exports = app;
+export default app;

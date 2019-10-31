@@ -5,8 +5,8 @@ dotenv.config();
 
 const authToken = (data) => {
   const jwtSecret = process.env.SECRET_KEY;
-  const options = { expiresIn: '1d' };
+  const options = { expiresIn: '2d' };
   return jwt.sign(data, jwtSecret, options);
 };
 
-module.exports = authToken;
+export default authToken;

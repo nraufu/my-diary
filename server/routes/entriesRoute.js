@@ -1,5 +1,5 @@
 import express from 'express';
-import entry from '../controllers/entryController';
+import EntryController from '../controllers/entryController';
 import validate from '../middlewares/validator';
 import verifyToken from '../middlewares/verifyToken';
 
@@ -14,18 +14,17 @@ router.get('/', (req, res) => {
 });
 
 /* GET all user entries */
-router.get('/entries', entry.getAllEntries);
+router.get('/entries', verifyToken, EntryController.getAllEntries);
 
 /* GET a single entry */
-router.get('/entries/:id', entry.getEntry);
+router.get('/entries/:id', verifyToken,validate.paramValidation, EntryController.getEntry);
 
 /* POST a new entry */
-router.post('/entries/', validate.entry, entry.addEntry);
+router.post('/entries/', verifyToken, validate.entry, EntryController.addEntry);
 
 /* PUT new a data in existing entry */
-router.put('/entries/:id', validate.entry, entry.modifyEntry);
+router.patch('/entries/:id', verifyToken, validate.paramValidation, validate.entry, EntryController.modifyEntry);
 
-router.delete('/entries/:id', entry.deleteEntry)
+router.delete('/entries/:id', verifyToken, validate.paramValidation, EntryController.deleteEntry)
 
-    
-module.exports = router;
+export default router;
