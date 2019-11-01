@@ -3,28 +3,26 @@ import entries from '../models/entries';
 class EntryController {
 
     static getAllEntries(req, res) {
-        try{
-            const {
-                userId
-            } = req.authorizedUser;
-            const userEntries = entries.filter(entry => entry.userId === userId);
-            if(userEntries.length !== 0) return res.status(404).json({status: 404, error: "No entry found"});
-            return res.status(200).json({
-                status: 200,
-                entries
-            });
-        }catch(err){
+        try {
+            if (entries.length === 0) {
+                return res.status(404).json({
+                    status: 404,
+                    error: "No entry found"
+                });
+            } else {
+                return res.status(200).json({
+                    status: 200,
+                    entries
+                });
+            }
+        } catch (err) {
             next(err);
         }
-        
+
     }
 
     static getEntry(req, res) {
-        try{
-            const {
-                userId
-            } = req.authorizedUser;
-    
+        try {
             const found = entries.find(entry => entry.id === Number(req.params.id));
             if (found) return res.status(200).json({
                 status: 200,
@@ -34,18 +32,18 @@ class EntryController {
                 status: 404,
                 message: "Entry doesn't Exist"
             });
-        }catch(err){
+        } catch (err) {
             next(err);
         }
-        
+
     }
 
     static addEntry(req, res) {
-        try{
+        try {
             const {
                 userId
             } = req.authorizedUser;
-    
+
             const entry = req.body;
             entry.id = entries.length + 1;
             const data = {
@@ -62,28 +60,21 @@ class EntryController {
                 message: "Entry successfully created",
                 data
             });
-        }catch(err){
+        } catch (err) {
             next(err);
         }
-        
+
     }
 
     static modifyEntry(req, res) {
-        try{
-            const {
-                userId
-            } = req.authorizedUser;
-    
+        try {
             const {
                 title,
                 description,
                 isFavorite
             } = req.body;
-    
             const newDate = new Date().toISOString();
-    
             const found = entries.find(entry => entry.id === Number(req.params.id));
-    
             if (!found) {
                 return res.status(404).json({
                     status: 404,
@@ -96,20 +87,20 @@ class EntryController {
                 found.createdOn = newDate;
                 found.isFavorite = isFavorite;
                 const modified = found;
-                return res.status(200).json({ status: 200, message: "Entry successfully modified", modified});
-        }
-        }catch(err){
+                return res.status(200).json({
+                    status: 200,
+                    message: "Entry successfully modified",
+                    modified
+                });
+            }
+        } catch (err) {
             next(err);
         }
-        
-}
+
+    }
 
     static deleteEntry(req, res) {
         try {
-            const {
-                userId
-            } = req.authorizedUser;
-    
             const found = entries.findIndex(entry => entry.id === Number(req.params.id));
             if (found !== -1) {
                 entries.splice(found, 1);
@@ -117,7 +108,7 @@ class EntryController {
                     status: 204,
                     message: "Entry successfully Deleted"
                 });
-            } else if(found === -1){
+            } else if (found === -1) {
                 return res.status(404).json({
                     status: 404,
                     error: "Entry doesn't Exist"
@@ -127,13 +118,11 @@ class EntryController {
                 status: 403,
                 error: "Entry is Off limits"
             })
-        }
-    
-    catch(err){
+        } catch (err) {
             next(err);
         }
-        
-}
+
+    }
 }
 
 

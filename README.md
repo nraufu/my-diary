@@ -5,7 +5,7 @@
 # MyDiary
 MyDiary is an online journal where users can pen down their thoughts and feelings.
 
-# UI Features
+# Features
 
 - Users can create an account.
 - User can sign in.
@@ -18,3 +18,55 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 # UI Template
 
 Template is hosted [Here](https://nraufu.github.io/my-diary/UI/index.html)
+
+### API Deployment
+
+API Endpoint is hosted [Here](https://my-diary01.herokuapp.com/api/v1)
+
+## Technologies
+
+* [NodeJS](https://nodejs.org/) - JavaScript Runtime Environment
+* [ExpressJs](https://expressjs.com/) - A Minimal  Web Application Framework
+* [Mocha](https://mochajs.org/) - JavaScript test framework
+* [Chai](http://www.chaijs.com/) - A BDD / TDD assertion library 
+* [npm](https://www.npmjs.com/) - package manager for javascript
+
+## Getting Started
+
+ ### Prerequisites
+
+ Ensure you have NodeJS installed on your computer by entering  `node -v ` on your terminal. If you don't have NodeJS installed go to the [NodeJS Website](https://nodejs.org/en/download/), and follow the download instructions
+ 
+### Installation
+
+Clone the app
+* ``` git clone https://github.com/nraufu/my-diary```
+
+Install all the packages
+* ``` npm install ```
+
+Run the server
+*  ``` npm start ```
+
+Server listens on port 5000
+* Navigate to your browser and input the url [localhost:5000](http://localhost:5000/)
+
+## Testing
+Run Test case
+* ```npm run test```
+
+Test Api 
+* [Postman](https://getpostman.com/)
+
+
+
+## Working Routes
+|	Endpoint	             | Functionality         |
+|------------------------|:---------------------:|
+|GET /entries            | Fetch all entries     |   
+|GET /entries/:id        | Fetch a single entry  |
+|POST /entries           | Create an entry       |
+|PATCH /​entries​/:id      ​| Modify an entry       |
+|POST /auth/signup       | Regitser a user       |
+|POST /auth/login        | Login a user          |
+|DELETE /entries/:Id     | Delete a user Entry   |
