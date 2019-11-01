@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
 const validate = {
-
   entry(req, res, next) {
     const schema = {
       title: Joi.string().max(100).required(),
