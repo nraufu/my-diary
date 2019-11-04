@@ -55,7 +55,7 @@ describe('/GET/:id entries', () => {
       .end((err, res) => {
         expect(res).to.have.status(404);
         expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('message');
+        expect(res.body).to.have.property('error');
         done();
       });
   });
