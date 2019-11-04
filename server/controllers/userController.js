@@ -1,6 +1,8 @@
 import '@babel/polyfill';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+import { query } from '../models/index';
+import queries from '../models/queries';
 import authToken from '../middlewares/authToken';
 import users from '../models/users';
 
@@ -9,34 +11,23 @@ dotenv.config();
 class UserController {
     static async createUser(req, res, next) {
         try {
-            const userId = users.length + 1;
             const {
-                firstName,
-                lastName,
                 email,
                 password
             } = req.body;
 
-            const emailExists = await users.find((user) => user.email === req.body.email);
-            if (emailExists) {
+            const user = await query(queries.getUser, [email]);
+            if (user.rows.length) {
                 return res.status(409).json({
                     "status": "409",
                     "error": "User Already Exists"
                 });
             }
-            const passwordhash = await bcrypt.hash(password, 5);
-            const newUser = {
-                userId: userId,
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: passwordhash
-            };
-            users.push(newUser);
-            const data = {
-                userId,
-                email
-            };
+            const passwordHash = await bcrypt.hash(password, 5);
+            const newUser = await query(queries.insertUser, [email, passwordHash]);
+
+            const userInfo = newUser.rows[0];
+            const data = { email: userInfo.email};
             const token = authToken(data);
             res.status(201).json({
                 "status": "201",

@@ -6,7 +6,7 @@ const sample = {
   anotherValidUser: {
     firstName: 'hisfirstname',
     lastName: 'hislastname',
-    email: 'newuser@gmail.com',
+    email: 'newUser@gmail.com',
     password: 'hispassword',
   },
   invalidUser: {
