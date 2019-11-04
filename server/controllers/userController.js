@@ -1,7 +1,9 @@
 import '@babel/polyfill';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-import { query } from '../models/index';
+import {
+    query
+} from '../models/index';
 import queries from '../models/queries';
 import authToken from '../middlewares/authToken';
 import users from '../models/users';
@@ -27,7 +29,9 @@ class UserController {
             const newUser = await query(queries.insertUser, [email, passwordHash]);
 
             const userInfo = newUser.rows[0];
-            const data = { email: userInfo.email};
+            const data = {
+                email: userInfo.email
+            };
             const token = authToken(data);
             res.status(201).json({
                 "status": "201",
@@ -48,8 +52,9 @@ class UserController {
                 password
             } = req.body;
 
-            const passwordIsValid = (pwd, userpwd) => bcrypt.compareSync(pwd, userpwd);
-            const user = await users.find((userx) => userx.email === email && passwordIsValid(password, userx.password));
+            const user = await query(queries.getUser, [email]);
+            
+            const passwordIsValid = await bcrypt.compareSync(password, user.rows[0].password);
 
             if (!user || !passwordIsValid) return res.status(422).json({
                 status: "422",
@@ -57,12 +62,12 @@ class UserController {
             });
 
             const data = {
-                userID: user.userId,
-                email: user.email
+                email: user.rows[0].email
             };
             const token = authToken(data);
             return res.status(200).json({
                 "status": "201",
+                "message": "Logged In Successfully",
                 "data": {
                     token
                 }
