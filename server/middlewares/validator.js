@@ -46,7 +46,7 @@ const validate = {
     const { error } = Joi.validate(req.params,schema);
     if(error) return res.status(400).json({
       status: 400,
-      "message": "id should be an integer"
+      "Error": "id should be an integer"
     });
     next();
   }
