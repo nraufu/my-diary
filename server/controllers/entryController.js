@@ -1,22 +1,27 @@
+import '@babel/polyfill';
+import { query } from '../models/index';
+import queries from '../models/queries';
 import entries from '../models/entries';
 
 class EntryController {
 
-    static getAllEntries(req, res) {
+    static async getAllEntries(req, res, next) {
         try {
-            if (entries.length === 0) {
+            const userEntries = await query(queries.getAllEntries,
+                [req.authorizedUser.email]);
+            if (userEntries.rows.length === 0) {
                 return res.status(404).json({
                     status: 404,
-                    error: "No entry found"
+                    error: "No entries found"
                 });
             } else {
                 return res.status(200).json({
                     status: 200,
-                    entries
+                    Entries: userEntries.rows
                 });
             }
-        } catch (err) {
-            next(err);
+        } catch (error) {
+            next(error);
         }
 
     }
