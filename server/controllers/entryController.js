@@ -9,17 +9,11 @@ class EntryController {
         try {
             const userEntries = await query(queries.getAllEntries,
                 [req.authorizedUser.email]);
-            if (userEntries.rows.length === 0) {
-                return res.status(404).json({
-                    status: 404,
-                    error: "No entries found"
-                });
-            } else {
+            
                 return res.status(200).json({
                     status: 200,
                     Entries: userEntries.rows
                 });
-            }
         } catch (error) {
             next(error);
         }
@@ -43,9 +37,13 @@ class EntryController {
 
     }
 
-    static addEntry(req, res) {
+    static async addEntry(req, res, next) {
         try {
-            const {
+            const { title, description, isFavorite } = req.body;
+            const newEntry = await query(queries.insertEntry,
+              [req.authorizedUser.email, title, description, isFavorite]);
+            res.status(201).json(newEntry.rows[0]);
+           /*  const {
                 userId
             } = req.authorizedUser;
 
@@ -64,7 +62,7 @@ class EntryController {
                 status: 200,
                 message: "Entry successfully created",
                 data
-            });
+            }); */
         } catch (err) {
             next(err);
         }

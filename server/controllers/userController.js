@@ -53,13 +53,16 @@ class UserController {
             } = req.body;
 
             const user = await query(queries.getUser, [email]);
-            
-            const passwordIsValid = await bcrypt.compareSync(password, user.rows[0].password);
-
-            if (!user || !passwordIsValid) return res.status(422).json({
+            if (!user.rows.length) return res.status(422).json({
                 status: "422",
-                message: "Username or Password is Incorrect"
+                message: "Username Doesn't Exist"
             });
+            const passwordIsValid = await bcrypt.compareSync(password, user.rows[0].password);
+            if (!passwordIsValid) return res.status(422).json({
+                status: "422",
+                message: "Password is Incorrect"
+            });
+
 
             const data = {
                 email: user.rows[0].email
