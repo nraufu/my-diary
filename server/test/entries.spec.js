@@ -13,7 +13,7 @@ const {
 
 chai.use(chaiHttp);
 
-describe('/GET entries', () => {
+/* describe('/GET entries', () => {
   it('it should return all user entries', (done) => {
     chai
       .request(app)
@@ -26,7 +26,7 @@ describe('/GET entries', () => {
         done();
       })
   })
-});
+}); */
 
 
 describe('/GET/:id entries', () => {
