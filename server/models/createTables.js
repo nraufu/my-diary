@@ -17,8 +17,8 @@ const entriesTableQuery = `CREATE TABLE IF NOT EXISTS entries (
     created_on TIMESTAMP  DEFAULT now() NOT NULL,
     updated_on TIMESTAMP  DEFAULT now() NOT NULL,
     title VARCHAR (100)   NOT NULL,
-    content VARCHAR (1000)   NOT NULL,
-    is_favorite BOOLEAN DEFAULT false NOT NULL
+    description VARCHAR (1000)   NOT NULL,
+    isFavorite BOOLEAN DEFAULT false NOT NULL
 );`;
 
 const createTables = async () => {
