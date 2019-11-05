@@ -62,7 +62,7 @@ describe('/GET/:id entries', () => {
 });
 
 describe('UPDATE/ api/v1/entries/:id  update user entry', () => {
-  it('should update the entry and return a 200 status code', (done) => {
+  /* it('should update the entry and return a 200 status code', (done) => {
     chai.request(app)
       .patch('/api/v1/entries/2')
       .set('Authorization', `Bearer: ${token}`)
@@ -76,7 +76,7 @@ describe('UPDATE/ api/v1/entries/:id  update user entry', () => {
         done();
       })
   })
-
+ */
   it('should return a 404 status code and a message when  the entry is not found or a wrong entryId is passed', (done) => {
     chai.request(app)
       .patch('/api/v1/entries/2090')
