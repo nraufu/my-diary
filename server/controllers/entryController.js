@@ -1,7 +1,5 @@
 import '@babel/polyfill';
-import {
-    query
-} from '../models/index';
+import { query } from '../models/index';
 import queries from '../models/queries';
 import entries from '../models/entries';
 
@@ -25,7 +23,6 @@ class EntryController {
     static async getEntry(req, res, next) {
         try {
             const entry = await query(queries.getEntry, [req.authorizedUser.email, req.params.id]);
-
             if (!entry.rowCount) {
                 return res.status(404).json({
                     status: 404,
@@ -46,11 +43,7 @@ class EntryController {
 
     static async addEntry(req, res, next) {
         try {
-            const {
-                title,
-                description,
-                isFavorite
-            } = req.body;
+            const { title, description, isFavorite } = req.body;
             const newEntry = await query(queries.insertEntry,
                 [req.authorizedUser.email, title, description, isFavorite]);
             res.status(201).json({
@@ -64,33 +57,13 @@ class EntryController {
 
     }
 
-    static modifyEntry(req, res) {
+    static async modifyEntry(req, res, next) {
         try {
-            const {
-                title,
-                description,
-                isFavorite
-            } = req.body;
-            const newDate = new Date().toISOString();
-            const found = entries.find(entry => entry.id === Number(req.params.id));
-            if (!found) {
-                return res.status(404).json({
-                    status: 404,
-                    error: "Entry doesn't Exist"
-                })
-            }
-            if (found) {
-                found.title = title;
-                found.description = description;
-                found.createdOn = newDate;
-                found.isFavorite = isFavorite;
-                const modified = found;
-                return res.status(200).json({
-                    status: 200,
-                    message: "Entry successfully modified",
-                    modified
-                });
-            }
+            const { title, description, isFavorite } = req.body;
+      const entry = await query(queries.getEntry,[req.authorizedUser.email, req.params.id]);
+      if (!entry.rowCount) res.status(404).json({ status: 404, error: "entry doesn't exist" });
+        const updatedEntry = await query(queries.updateEntry,[title, description, isFavorite, req.authorizedUser.email, req.params.id]);
+        res.status(200).json({status: 200, message: 'Entry modified Successfully', Entry:updatedEntry.rows[0]});
         } catch (err) {
             next(err);
         }
