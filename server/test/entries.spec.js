@@ -95,7 +95,7 @@ describe('UPDATE/ api/v1/entries/:id  update user entry', () => {
 });
 
 describe('DELETE/ ap1/v1/entries/:id  delete an entry', () => {
-  it('should delete an entry and return a 200 status code', (done) => {
+ /*  it('should delete an entry and return a 200 status code', (done) => {
     chai
       .request(app)
       .delete('/api/v1/entries/2')
@@ -105,7 +105,7 @@ describe('DELETE/ ap1/v1/entries/:id  delete an entry', () => {
         done();
       });
   });
-
+ */
   it('should return a 404 status code when the wrong entryId is passed or entry does not exist', (done) => {
     chai
       .request(app)
