@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/602f0efa0ea32d017ac8/maintainability)](https://codeclimate.com/github/nraufu/my-diary/maintainability)
 
 # MyDiary
-MyDiary is an online journal where users can pen down their thoughts and feelings.
+MyDiary is an online journal where users can pen down their thoughts and feelings. A user create an account and Enter  a space he will be able to keep his daily thoughts and stories.
 
 # Features
 
@@ -27,9 +27,6 @@ API Endpoint is hosted [Here](https://my-diary01.herokuapp.com/api/v1)
 
 * [NodeJS](https://nodejs.org/) - JavaScript Runtime Environment
 * [ExpressJs](https://expressjs.com/) - A Minimal  Web Application Framework
-* [Mocha](https://mochajs.org/) - JavaScript test framework
-* [Chai](http://www.chaijs.com/) - A BDD / TDD assertion library 
-* [npm](https://www.npmjs.com/) - package manager for javascript
 
 ## Getting Started
 
@@ -47,9 +44,6 @@ Install all the packages
 
 Run the server
 *  ``` npm start ```
-
-Server listens on port 5000
-* Navigate to your browser and input the url [localhost:5000](http://localhost:5000/)
 
 ## Testing
 Run Test case

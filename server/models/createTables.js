@@ -25,7 +25,7 @@ const createTables = async () => {
     try {
       query(`${usersTableQuery} ${entriesTableQuery}`);
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   };
   
