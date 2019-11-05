@@ -41,13 +41,13 @@ describe('/POST /auth/signup', () => {
       });
   });
 
-  it('should return 409 conflict error without an auth token when a user is already signed up', (done) => {
+  it('should return 400 bad request error without an auth token when a user is already signed up', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')
       .send(sample.anotherValidUser2)
       .end((err, res) => {
-        expect(res).to.have.status(409);
+        expect(res).to.have.status(400);
         expect(res.body).to.be.an('object');
         expect(res.body).not.to.have.property('token');
         expect(res.body).to.have.property('error');
