@@ -32,8 +32,8 @@ class EntryController {
 
     static async addEntry(req, res, next) {
         try {
-            const { title, description, isFavorite } = req.body;
-            const newEntry = await query(queries.insertEntry, [req.authorizedUser.email, title, description, isFavorite]);
+            const { title, description, isfavorite } = req.body;
+            const newEntry = await query(queries.insertEntry, [req.authorizedUser.email, title, description, isfavorite]);
             res.status(201).json({ status: 201, message: "Entry successfully created", newEntry: newEntry.rows[0] });
         } catch (err) {
             next(err);
@@ -43,11 +43,11 @@ class EntryController {
 
     static async modifyEntry(req, res, next) {
         try {
-            const { title, description, isFavorite } = req.body;
+            const { title, description, isfavorite } = req.body;
       const entry = await query(queries.getEntry,[req.authorizedUser.email, req.params.id]);
       if (!entry.rowCount) return res.status(404).json({ status: 404, error: "entry doesn't exist" });
 
-        const updatedEntry = await query(queries.updateEntry,[title, description, isFavorite, req.authorizedUser.email, req.params.id]);
+        const updatedEntry = await query(queries.updateEntry,[title, description, isfavorite, req.authorizedUser.email, req.params.id]);
         return res.status(200).json({status: 200, message: 'Entry modified Successfully', Entry:updatedEntry.rows[0]});
         } catch (err) {
             next(err);
