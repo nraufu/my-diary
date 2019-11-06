@@ -275,19 +275,6 @@ describe('/GET entries', () => {
                 done();
             });
     });
-
-    it('should return 404 not error status when user doesn\'t have entries', (done) => {
-        chai
-            .request(app)
-            .get('/api/v1/entries/')
-            .set('Authorization', makeAuthHeader(sampleData.anotherValidtoken))
-            .end((err, res) => {
-                expect(res).to.have.status(404);
-                expect(res.body).to.be.an('object');
-                done();
-            });
-    });
-
     it('should return 500 internal error when database throws error', (done) => {
         const queryStub = sinon.stub(pool, 'query').throws(new Error('Query failed'));
         chai
