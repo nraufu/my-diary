@@ -7,7 +7,6 @@ import {
     pool,
     query
 } from '../models/index';
-import createTables from '../models/createTables';
 
 const {
     expect
@@ -287,18 +286,6 @@ describe('/GET entries', () => {
                 expect(res.body).to.have.property('Entries');
                 expect(res.body.Entries).to.be.an('array');
                 expect(res.body.Entries.length).to.eql(2);
-                done();
-            });
-    });
-
-    it('should return 404 not error status when user doesn\'t have entries', (done) => {
-        chai
-            .request(app)
-            .get('/api/v1/entries/')
-            .set('Authorization', makeAuthHeader(sampleData.anotherValidtoken))
-            .end((err, res) => {
-                expect(res).to.have.status(404);
-                expect(res.body).to.be.an('object');
                 done();
             });
     });
