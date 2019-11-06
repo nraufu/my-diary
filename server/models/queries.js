@@ -21,3 +21,6 @@ description = COALESCE($2, description),isFavorite = COALESCE($3, isFavorite)
 FROM users WHERE entries.user_id=users.id AND users.email=$4
 AND entries.id=$5 RETURNING entries.id, entries.title, 
 entries.description, entries.isFavorite, entries.created_on`;
+
+queries.deleteEntry = `DELETE FROM entries USING users 
+WHERE entries.user_id=users.id AND users.email=$1 AND entries.id=$2`;

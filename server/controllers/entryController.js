@@ -1,20 +1,15 @@
 import '@babel/polyfill';
 import { query } from '../models/index';
 import queries from '../models/queries';
-import entries from '../models/entries';
+
 
 class EntryController {
 
     static async getAllEntries(req, res, next) {
         try {
-            const userEntries = await query(queries.getAllEntries,
-                [req.authorizedUser.email]);
-
-            return res.status(200).json({
-                status: 200,
-                message: 'Entries successfully found',
-                Entries: userEntries.rows
-            });
+            const userEntries = await query(queries.getAllEntries, [req.authorizedUser.email]);
+            if(!userEntries.rowCount) return res.status(404).json({ status: 404, message: 'No entry found' });
+            return res.status(200).json({ status: 200, message: 'Entries successfully found', Entries: userEntries.rows });
         } catch (error) {
             next(error);
         }
@@ -38,13 +33,8 @@ class EntryController {
     static async addEntry(req, res, next) {
         try {
             const { title, description, isFavorite } = req.body;
-            const newEntry = await query(queries.insertEntry,
-                [req.authorizedUser.email, title, description, isFavorite]);
-            res.status(201).json({
-                status: 201,
-                message: "Entry successfully created",
-                newEntry: newEntry.rows[0]
-            });
+            const newEntry = await query(queries.insertEntry, [req.authorizedUser.email, title, description, isFavorite]);
+            res.status(201).json({ status: 201, message: "Entry successfully created", newEntry: newEntry.rows[0] });
         } catch (err) {
             next(err);
         }
@@ -55,34 +45,24 @@ class EntryController {
         try {
             const { title, description, isFavorite } = req.body;
       const entry = await query(queries.getEntry,[req.authorizedUser.email, req.params.id]);
-      if (!entry.rowCount) res.status(404).json({ status: 404, error: "entry doesn't exist" });
+      if (!entry.rowCount) return res.status(404).json({ status: 404, error: "entry doesn't exist" });
+
         const updatedEntry = await query(queries.updateEntry,[title, description, isFavorite, req.authorizedUser.email, req.params.id]);
-        res.status(200).json({status: 200, message: 'Entry modified Successfully', Entry:updatedEntry.rows[0]});
+        return res.status(200).json({status: 200, message: 'Entry modified Successfully', Entry:updatedEntry.rows[0]});
         } catch (err) {
             next(err);
         }
 
     }
 
-    static deleteEntry(req, res) {
+    static async deleteEntry(req, res, next) {
         try {
-            const found = entries.findIndex(entry => entry.id === Number(req.params.id));
-            if (found !== -1) {
-                entries.splice(found, 1);
-                return res.status(204).json({
-                    status: 204,
-                    message: "Entry successfully Deleted"
-                });
-            } else if (found === -1) {
-                return res.status(404).json({
-                    status: 404,
-                    error: "Entry doesn't Exist"
-                });
-            }
-            return res.status(403).json({
-                status: 403,
-                error: "Entry is Off limits"
-            })
+            const deleted = await query(queries.deleteEntry,
+                [req.authorizedUser.email, req.params.id]);
+              if (!deleted.rowCount) return res.status(404).json({status: 404, error: "Entry doesn't Exist"});
+
+              return res.status(204).json();
+            
         } catch (err) {
             next(err);
         }
