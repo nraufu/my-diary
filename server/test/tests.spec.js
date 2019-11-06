@@ -19,7 +19,7 @@ let cachedEntry; // for caching retrieved entry for later comparison
 
 const makeAuthHeader = authToken => `Bearer ${authToken}`;
 
-before(async () => {
+/* before(async () => {
     // try to create tables if they dont exist
     await createTables();
     // remove all entries
@@ -30,7 +30,7 @@ before(async () => {
     if (task1.rows && task2.rows) {
         await query('ALTER SEQUENCE entries_id_seq RESTART WITH 1');
     }
-});
+}); */
 
 describe('/GET API base', () => {
     it('should return 200 status to confirm that the API server is running', (done) => {
