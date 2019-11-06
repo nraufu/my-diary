@@ -263,18 +263,6 @@ describe('/GET entries', () => {
                 done();
             });
     });
-    it('should return 404 when user has not entries in his records', (done) => {
-        chai
-            .request(app)
-            .get('/api/v1/entries/')
-            .set('Authorization', makeAuthHeader(sampleData.anotherValidtoken))
-            .end((err, res) => {
-                expect(res).to.have.status(404);
-                expect(res.body).to.be.an('object');
-                expect(res.body).to.be.have.property('message');
-                done();
-            });
-    });
 
     it('should return 200 status with array of entries after user adds an entry and sends a valid token', (done) => {
         chai
