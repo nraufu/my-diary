@@ -12,6 +12,7 @@ class EntryController {
 
             return res.status(200).json({
                 status: 200,
+                message: 'Entries successfully found',
                 Entries: userEntries.rows
             });
         } catch (error) {
@@ -24,16 +25,9 @@ class EntryController {
         try {
             const entry = await query(queries.getEntry, [req.authorizedUser.email, req.params.id]);
             if (!entry.rowCount) {
-                return res.status(404).json({
-                    status: 404,
-                    error: "Entry doesn't Exist"
-                });
+                return res.status(404).json({ status: 404, error: "Entry doesn't Exist" });
             } else {
-                return res.status(200).json({
-                    status: 200,
-                    message: "Entry successfully found",
-                    entry: entry.rows[0]
-                });
+                return res.status(200).json({ status: 200, message: "Entry successfully found", entry: entry.rows[0] });
             }
         } catch (err) {
             next(err);

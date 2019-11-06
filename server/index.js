@@ -18,6 +18,6 @@ app.use(express.static('./UI'));
 app.use('/api/v1', entryRoute);
 app.use('/api/v1/auth', userRoute);
 
-app.listen(PORT, () => console.log(`The server is listening to port ${PORT}....`));
+app.listen(PORT);
 
 export default app;
