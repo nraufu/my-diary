@@ -3,11 +3,8 @@ import chaiHttp from 'chai-http';
 import sinon from 'sinon';
 import app from '../index';
 import sampleData from './sampleData';
-import {
-    pool,
-    query
-} from '../models/index';
-import createTables from '../models/createTables';
+import { pool } from '../models/index';
+
 
 const {
     expect
@@ -19,18 +16,6 @@ let cachedEntry; // for caching retrieved entry for later comparison
 
 const makeAuthHeader = authToken => `Bearer ${authToken}`;
 
-before(async () => {
-    // try to create tables if they dont exist
-    await createTables();
-    // remove all entries
-    const task1 = await query('TRUNCATE TABLE entries CASCADE');
-    // remove all users
-    const task2 = await query('TRUNCATE TABLE users CASCADE');
-    // reset entries id column sequence
-    if (task1.rows && task2.rows) {
-        await query('ALTER SEQUENCE entries_id_seq RESTART WITH 1');
-    }
-});
 
 describe('/GET API base', () => {
     it('should return 200 status to confirm that the API server is running', (done) => {
