@@ -18,18 +18,7 @@ let cachedEntry; // for caching retrieved entry for later comparison
 
 const makeAuthHeader = authToken => `Bearer ${authToken}`;
 
-/* before(async () => {
-    // try to create tables if they dont exist
-    await createTables();
-    // remove all entries
-    const task1 = await query('TRUNCATE TABLE entries CASCADE');
-    // remove all users
-    const task2 = await query('TRUNCATE TABLE users CASCADE');
-    // reset entries id column sequence
-    if (task1.rows && task2.rows) {
-        await query('ALTER SEQUENCE entries_id_seq RESTART WITH 1');
-    }
-}); */
+
 
 describe('/GET API base', () => {
     it('should return 200 status to confirm that the API server is running', (done) => {
@@ -271,6 +260,18 @@ describe('/GET entries', () => {
                 expect(res).to.have.status(401);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.be.have.property('error');
+                done();
+            });
+    });
+    it('should return 404 when user has not entries in his records', (done) => {
+        chai
+            .request(app)
+            .get('/api/v1/entries/')
+            .set('Authorization', makeAuthHeader(sampleData.anotherValidtoken))
+            .end((err, res) => {
+                expect(res).to.have.status(404);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.be.have.property('message');
                 done();
             });
     });
