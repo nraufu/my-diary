@@ -13,7 +13,13 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'));
-app.use(express.static('./UI'));
+
+/* GET API base */
+app.get('/', (req, res) => {
+    res.status(200).json({
+        Message: 'Welcome To My Diary'
+    });
+});
 
 app.use('/api/v1', entryRoute);
 app.use('/api/v1/auth', userRoute);
