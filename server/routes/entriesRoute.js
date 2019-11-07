@@ -6,13 +6,6 @@ import verifyToken from '../middlewares/verifyToken';
 const router = express.Router();
 
 
-/* GET API base */
-router.get('/', (req, res) => {
-    res.status(200).json({
-        Message: 'Welcome To My Diary'
-    });
-});
-
 /* GET all user entries */
 router.get('/entries', verifyToken, EntryController.getAllEntries);
 

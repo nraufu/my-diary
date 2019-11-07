@@ -8,20 +8,20 @@ const validate = {
       isfavorite: Joi.boolean().required(),
     };
     const { error } = Joi.validate(req.body, schema);
-    if(error) return res.status(400).json({status: 400 , error: error.details[0].message});
+    if(error) return res.status(400).json({status: 400 , message: "Please fill in all fields with valid data"});
     next();
   },
 
   signUp(req, res, next) {
     const schema = {
-      firstName: Joi.string().trim().regex(/[A-Za-z0-9\. -]+/).max(60).required(), 
-      lastName: Joi.string().trim().regex(/[A-Za-z0-9\. -]+/).max(60).required(),  
+      firstName: Joi.string().trim().regex(/^[a-z ,.'-]+$/i).max(60).required(), 
+      lastName: Joi.string().trim().regex(/^[a-z ,.'-]+$/i).max(60).required(),  
       email: Joi.string().email().trim().required(),
-      password: Joi.string().trim().regex(/^[a-zA-Z0-9]+$/).min(8).max(20)
+      password: Joi.string().trim().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).max(20)
         .required()
     };
-    const { error } = Joi.validate(req.body,schema);
-    if(error) return res.status(400).json({status: 400 , error: error.details[0].message});
+    const { error } = Joi.validate(req.body, schema);
+    if(error) return res.status(400).json({status: 400 , message: "credentials must be valid, with a Minimum eight characters, at least one uppercase letter, one lowercase letter and one number password"});
     next();
   },
 
@@ -32,7 +32,7 @@ const validate = {
     };
 
     const { error } = Joi.validate(req.body,schema);
-    if(error) return res.status(400).json({status: 400 , error: error.details[0].message});
+    if(error) return res.status(400).json({status: 400 , message: "Please fill all the required fields with valid data" });
     next();
   },
 
@@ -42,7 +42,7 @@ const validate = {
     };
 
     const { error } = Joi.validate(req.params,schema);
-    if(error) return res.status(400).json({ status: 400, "Error": "id should be an integer" });
+    if(error) return res.status(400).json({ status: 400, message: "id should be an integer" });
     next();
   }
 }
