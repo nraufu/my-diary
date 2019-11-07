@@ -5,7 +5,7 @@ const validate = {
     const schema = {
       title: Joi.string().trim().max(100).required(),
       description: Joi.string().trim().max(3000).required(),
-      isFavorite: Joi.boolean().required(),
+      isfavorite: Joi.boolean().required(),
     };
     const { error } = Joi.validate(req.body, schema);
     if(error) return res.status(400).json({status: 400 , error: error.details[0].message});

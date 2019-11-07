@@ -51,7 +51,8 @@
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
-    "pg-connection-string": "^2.1.0"
+    "pg-connection-string": "^2.1.0",
+    "sinon": "^7.5.0"
   },
   "nyc": {
     "require": [
