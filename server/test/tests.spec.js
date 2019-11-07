@@ -21,7 +21,7 @@ describe('/GET API base', () => {
     it('should return 200 status to confirm that the API server is running', (done) => {
         chai
             .request(app)
-            .get('/api/v1')
+            .get('/')
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 done();
@@ -68,7 +68,7 @@ describe('/POST /auth/signup', () => {
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('error');
+                expect(res.body).to.have.property('message');
                 done();
             });
     });
@@ -99,7 +99,7 @@ describe('/POST /auth/signin', () => {
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.have.property('error');
+                expect(res.body).to.have.property('message');
                 done();
             });
     });
@@ -157,7 +157,7 @@ describe('/POST entries', () => {
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.be.have.property('error');
+                expect(res.body).to.be.have.property('message');
                 done();
             });
     });
@@ -313,7 +313,7 @@ describe('/GET/:id entries', () => {
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.be.have.property('Error');
+                expect(res.body).to.be.have.property('message');
                 done();
             });
     });
@@ -384,7 +384,7 @@ describe('/PATCH entries', () => {
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.be.have.property('error');
+                expect(res.body).to.be.have.property('message');
                 done();
             });
     });
@@ -442,7 +442,7 @@ describe('/DELETE/:id entries', () => {
             .end((err, res) => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
-                expect(res.body).to.be.have.property('Error');
+                expect(res.body).to.be.have.property('message');
                 done();
             });
     });

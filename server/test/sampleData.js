@@ -3,11 +3,11 @@ const sampleData = {
         firstName: 'john',
         lastName: 'doe',
       email: 'john.doe@gmail.com',
-      password: 'somepassword',
+      password: 'Some2password',
     },
     validUser: {
         email: 'john.doe@gmail.com',
-      password: 'somepassword'
+      password: 'Some2password'
     },
     invalidUser: {
       email: 'name',
