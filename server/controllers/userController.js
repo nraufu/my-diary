@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import { query } from '../models/index';
 import queries from '../models/queries';
-import authToken from '../middlewares/authToken';
+import authToken from '../helpers/authToken';
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ class UserController {
         try {
             const { email, password } = req.body;
             const user = await query(queries.getUser, [email]);
-            if (user.rows.length) return res.status(400).json({"status": "400", "error": "User Already Exists"});
+            if (user.rows.length) return res.status(409).json({"status": "409", "error": "User Already Exists"});
             const passwordHash = await bcrypt.hash(password, 5);
             const newUser = await query(queries.insertUser, [email, passwordHash]);
 
