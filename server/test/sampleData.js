@@ -45,7 +45,7 @@ const sampleData = {
     incompleteInvalidEntry: {
       isfavorite: 'true',
     },
-    anotherValidtoken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRva2VuQGdtYWlsLmNvbSIsImlhdCI6MTU3MzA3MTg0NSwiZXhwIjoxNTczMjQ0NjQ1fQ.d-eUCfx6yTT9mFBPDvuJvT8jhK4hFT84VLKn4Qa-xZ4',
+    anotherValidtoken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUyQGV4YW1wbGUuY29tIiwiaWF0IjoxNTc5NDIzNzE2LCJleHAiOjE2MTA5ODEzMTZ9.mYgKiQ6EFUznkuix9blVZiUaEDl09oDL061snJfx7_s',
     invalidEntryId: 'id',
     nonExistentId: 0
 }

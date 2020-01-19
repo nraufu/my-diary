@@ -4,9 +4,6 @@ import sinon from 'sinon';
 import app from '../index';
 import sampleData from './sampleData';
 import { pool } from '../models/index';
-import dotenv from 'dotenv';
-
-dotenv.config()
 
 const {
     expect
@@ -141,7 +138,7 @@ describe('/GET entries', () => {
         chai
             .request(app)
             .get('/api/v1/entries/')
-            .set('Authorization', makeAuthHeader(process.env.otherUserToken))
+            .set('Authorization', makeAuthHeader(sampleData.anotherValidtoken))
             .end((err, res) => {
                 expect(res).to.have.status(404);
                 expect(res.body).to.be.an('object');
