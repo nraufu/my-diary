@@ -23,12 +23,7 @@ CREATE TABLE IF NOT EXISTS entries (
     isfavorite BOOLEAN DEFAULT false NOT NULL
 );`;
 
-const createTables = async () => {
-    try {
+const createTables = () => {
       query(`${usersTableQuery} ${entriesTableQuery}`);
-    } catch (err) {
-      next(err);
-    }
-  };
-  
+}  
   export default createTables;

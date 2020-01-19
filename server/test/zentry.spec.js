@@ -11,6 +11,7 @@ const {
 chai.use(chaiHttp);
 
 let token; 
+let otherUserToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUyQGV4YW1wbGUuY29tIiwiaWF0IjoxNTc5NDIzNzE2LCJleHAiOjE2MTA5ODEzMTZ9.mYgKiQ6EFUznkuix9blVZiUaEDl09oDL061snJfx7_s";
 let cachedEntry; 
 
 const makeAuthHeader = authToken => `Bearer ${authToken}`;
@@ -131,6 +132,17 @@ describe('/GET entries', () => {
                 expect(res).to.have.status(200);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('Entries');
+                done();
+            });
+    });
+    it('should return 404 status when no user entries returned when passed another user valid token', (done) => {
+        chai
+            .request(app)
+            .get('/api/v1/entries/')
+            .set('Authorization', makeAuthHeader(otherUserToken))
+            .end((err, res) => {
+                expect(res).to.have.status(404);
+                expect(res.body).to.be.an('object');
                 done();
             });
     });
@@ -316,7 +328,21 @@ describe('/PATCH entries', () => {
                 done();
             });
     });
-
+    it('should return 500 internal error when database throws error', (done) => {
+        const queryStub = sinon.stub(pool, 'query').throws(new Error('Query failed'));
+        chai
+            .request(app)
+            .patch(`/api/v1/entries/${cachedEntry.id}`)
+            .set('Authorization', makeAuthHeader(token))
+            .send(sampleData.validEntry)
+            .end((err, res) => {
+                expect(res).to.have.status(500);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.not.have.property('entry');
+                queryStub.restore();
+                done();
+            });
+    });
 
 });
 
@@ -367,6 +393,20 @@ describe('/DELETE/:id entries', () => {
                 expect(res).to.have.status(404);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.be.have.property('error');
+                done();
+            });
+    });
+    it('should return 500 internal error when database throws error', (done) => {
+        const queryStub = sinon.stub(pool, 'query').throws(new Error('Query failed'));
+        chai
+            .request(app)
+            .delete(`/api/v1/entries/${cachedEntry.id}`)
+            .set('Authorization', makeAuthHeader(token))
+            .end((err, res) => {
+                expect(res).to.have.status(500);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.not.have.property('entry');
+                queryStub.restore();
                 done();
             });
     });
