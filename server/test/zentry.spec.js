@@ -4,6 +4,9 @@ import sinon from 'sinon';
 import app from '../index';
 import sampleData from './sampleData';
 import { pool } from '../models/index';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const {
     expect
@@ -11,7 +14,6 @@ const {
 chai.use(chaiHttp);
 
 let token; 
-let otherUserToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5hbWUyQGV4YW1wbGUuY29tIiwiaWF0IjoxNTc5NDIzNzE2LCJleHAiOjE2MTA5ODEzMTZ9.mYgKiQ6EFUznkuix9blVZiUaEDl09oDL061snJfx7_s";
 let cachedEntry; 
 
 const makeAuthHeader = authToken => `Bearer ${authToken}`;
@@ -139,7 +141,7 @@ describe('/GET entries', () => {
         chai
             .request(app)
             .get('/api/v1/entries/')
-            .set('Authorization', makeAuthHeader(otherUserToken))
+            .set('Authorization', makeAuthHeader(process.env.otherUserToken))
             .end((err, res) => {
                 expect(res).to.have.status(404);
                 expect(res.body).to.be.an('object');
