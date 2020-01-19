@@ -2,8 +2,8 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../index';
 import sampleData from './sampleData';
-
-
+import sinon from 'sinon';
+import { pool } from '../models/index';
 
 const {
     expect
@@ -68,6 +68,20 @@ describe('/POST /auth/signup', () => {
                 done();
             });
     });
+    it('should return 500 internal error when database throws error', (done) => {
+        const queryStub = sinon.stub(pool, 'query').throws(new Error('Query failed'));
+        chai
+            .request(app)
+            .post('/api/v1/auth/signup')
+            .send(sampleData.validUser1)
+            .end((err, res) => {
+                expect(res).to.have.status(500);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.not.have.property('error');
+                queryStub.restore();
+                done();
+            });
+    });
 });
 
 describe('/POST /auth/signin', () => {
@@ -122,6 +136,20 @@ describe('/POST /auth/signin', () => {
                 expect(res).to.have.status(400);
                 expect(res.body).to.be.an('object');
                 expect(res.body).to.have.property('error');
+                done();
+            });
+    });
+    it('should return 500 internal error when database throws error', (done) => {
+        const queryStub = sinon.stub(pool, 'query').throws(new Error('Query failed'));
+        chai
+            .request(app)
+            .post('/api/v1/auth/signin')
+            .send(sampleData.validUser)
+            .end((err, res) => {
+                expect(res).to.have.status(500);
+                expect(res.body).to.be.an('object');
+                expect(res.body).to.not.have.property('error');
+                queryStub.restore();
                 done();
             });
     });
