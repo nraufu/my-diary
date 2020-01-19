@@ -5,6 +5,12 @@ const sampleData = {
       email: 'john.doe@gmail.com',
       password: 'Some2password',
     },
+    validUser2: {
+        firstName: 'john',
+        lastName: 'doe',
+      email: 'john.doe2@gmail.com',
+      password: 'Some2password',
+    },
     validUser: {
         email: 'john.doe@gmail.com',
       password: 'Some2password'

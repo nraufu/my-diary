@@ -11,6 +11,7 @@ const {
 chai.use(chaiHttp);
 
 let token; 
+let anotherToken;
 let cachedEntry; 
 
 const makeAuthHeader = authToken => `Bearer ${authToken}`;
@@ -29,6 +30,19 @@ describe('/POST entries', () => {
                 ({
                     token
                 } = res.body.data);
+                done();
+            });
+    });
+    it('should return 200 status with an auth token when user successfully created', (done) => {
+        chai
+            .request(app)
+            .post('/api/v1/auth/signup')
+            .send(sampleData.validUser2)
+            .end((err, res) => {
+                expect(res).to.have.status(201);
+                expect(res.body).to.be.an('object');
+                expect(res.body.data).to.have.property('token');
+                anotherToken = res.body.data.token;
                 done();
             });
     });
@@ -138,7 +152,7 @@ describe('/GET entries', () => {
         chai
             .request(app)
             .get('/api/v1/entries/')
-            .set('Authorization', makeAuthHeader(sampleData.anotherValidtoken))
+            .set('Authorization', makeAuthHeader(anotherToken))
             .end((err, res) => {
                 expect(res).to.have.status(404);
                 expect(res.body).to.be.an('object');
