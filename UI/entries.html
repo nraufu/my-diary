@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="MyDiary is an online journal where users can record their thoughts and feelings">
+    <link rel="icon" type="image/png" href="./img/logo.jpg" sizes="32x32" />
+    <meta name="author" content="Niyonzi Rauf">
+    <title>My Stories | MyDiary</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="page page--is-flex page--stretches">
+        <header class="header">
+            <div class="container">
+                <div class="header-brand">
+                    <a class="link" href="./entries.html">
+                        <img class="img-logo" src="./img/logo.jpg" alt="logo" width="25px" height="25px">
+                        MyDiary
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-open-menu js-open-menu"></a>
+                    <ul class="list nav-list js-nav-list">
+                        <li class="list-item">
+                            <a href="#" class="nav-close-menu js-close-menu"></a>
+                        </li>
+                        <li class="list-item">
+                            <a href="./new-entry.html" class="link nav-link">
+                                New Story
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a href="./profile.html" class="link nav-link">
+                                Profile
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a href="./entries.html?filter=favs" class="link nav-link">
+                                Favorites
+                            </a>
+                        </li>
+                        <li class="list-item">
+                            <a href="./index.html" class="link nav-link">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <h1 class="story-list-title">
+            My Stories
+        </h1>
+        <div class="container story-list">
+            <figure class="story-list-item">
+                <div class="item-holder"></div>
+                <div class="item-date">
+                    <span class="date-span">01 Oct 2019</span>
+                </div>
+                <figcaption class="item-caption">
+                    <h3 class="caption-title">It was a cool day</h3>
+                    <p class="caption-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid eligendi commodi nisi? Necessitatibus odio nostrum adipisci distinctio numquam culpa sint?</p>
+                </figcaption>
+                <a class="link item-link" href="entry.html?id=1"></a>
+            </figure>
+            <figure class="story-list-item">
+                <div class="item-holder"></div>
+                <div class="item-date">
+                        <span class="date-span">01 Oct 2019</span>
+                    </div>
+                <figcaption class="item-caption">
+                    <h3 class="caption-title">I t was a cool day</h3>
+                    <p class="caption-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est minima ad fugit optio aspernatur vitae, at in eveniet sapiente nesciunt!</p>
+                </figcaption>
+                <a class="link item-link" href="entry.html?id=2"></a>
+            </figure>
+            <figure class="story-list-item">
+                <div class="item-holder"></div>
+                <div class="item-date">
+                        <span class="date-span">01 Oct 2019</span>
+                    </div>
+                <figcaption class="item-caption">
+                    <h3 class="caption-title">it was a cool day</h3>
+                    <p class="caption-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita, assumenda amet. Quod ipsa, accusamus odio itaque alias ducimus laboriosam eos.
+                    </p>
+                </figcaption>
+                <a class="link item-link" href="entry.html?id=3"></a>
+            </figure>
+        </div>
+        <div class="story-list-load-btn">
+            <a href="#" class="button button--success">
+                Load more
+            </a>
+        </div>
+        
+    </div>
+    <script type="text/javascript" src="./js/script.js"></script>
+</body>
+
+</html>
